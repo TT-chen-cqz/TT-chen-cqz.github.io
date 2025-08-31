@@ -12,6 +12,11 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
     />
     <link rel="icon" href="/images/avatar.png" />
+    <canvas id="background" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+    <script src="/js/background.js"></script>
+    <canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas>
+    <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+    <script src="/js/fireworks.js"></script>
     <link rel="preconnect" href="https://s4.zstatic.net" />
 <script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
 <link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -143,29 +148,7 @@
         
         
         <span>
-            <a href="/tags/%E4%B8%AA%E4%BA%BA/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                个人
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E6%90%9E%E7%AC%91/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                搞笑
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="background: #00a596">
+            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -181,6 +164,28 @@
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
                 站点信息
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/%E4%B8%AA%E4%BA%BA/" style="background: #ff7d73">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                个人
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/%E6%90%9E%E7%AC%91/" style="background: #00bcd4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                搞笑
             </a>
         </span>
         

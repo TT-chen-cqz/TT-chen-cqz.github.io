@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>Categories: 站点信息 | TT&#39;s Blog</title>
+    <title>P13428 [GCJ 2009 Qualification] Alien Language 题解 | TT&#39;s Blog</title>
     <meta name="author" content="TT" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -46,6 +46,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -145,85 +149,104 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="archives">
-    
-    <div class="categories-tags">
-        
-        
-        
-        <span>
-            <a href="/categories/%E7%AB%99%E7%82%B9%E4%BF%A1%E6%81%AF/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                站点信息
-            </a>
-        </span>
-        
-        
-        
-        
-        
-        <span>
-            <a href="/categories/%E9%A2%98%E8%A7%A3/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                题解
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/categories/%E4%B8%AA%E4%BA%BA/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                个人
-            </a>
+            <div class="article">
+    <div>
+        <h1>P13428 [GCJ 2009 Qualification] Alien Language 题解</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/9/20
         </span>
         
         
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2025/8/20</div>
-            <a href="/2025/08/20/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/">
-                <h3>建站日志</h3>
-            </a>
-            <div class="info">
-                
-                <span class="category">
-                    <a href="/categories/%E7%AB%99%E7%82%B9%E4%BF%A1%E6%81%AF/">
-                        <span class="icon">
-                            <i class="fa-solid fa-bookmark fa-fw"></i>
-                        </span>
-                        站点信息
-                    </a>
-                </span>
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </span>
-                    
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/%E7%AB%99%E7%82%B9%E4%BF%A1%E6%81%AF/" style="color: #00bcd4">
-                            站点信息
-                        </a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
+    <div class="content" v-pre>
+        <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P13428">题目传送门</a></p>
+<hr>
+<p><strong>思路：</strong></p>
+<p>先输入三个整数和 D 个单词；</p>
+<p>重复 N 次：</p>
+<ol>
+<li>输入一个字符串 T；</li>
+<li><strong>处理字符串</strong>：用一个二维数组 G，用于记录每一位有哪些字母可以用，然后遍历字符串，如遇 <code>(</code> 则重复将后面的所有字符统计到<strong>这一位</strong>，直到遇到 <code>)</code> 为止，否则直接将该字符统计到这一位即可；</li>
+<li>遍历每一个单词，如果该单词的每一位都是可用字母，那么 ans + 1；</li>
+<li>输出；</li>
+</ol>
+<p><strong>AC code：</strong></p>
+<pre><code class="cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int l,d,n,s,ans;
+string t,a[5005];
+bool g[505][30],q;
+int main()
+&#123;
+    cin&gt;&gt;l&gt;&gt;d&gt;&gt;n;
+    for(int i=1;i&lt;=d;i++)
+    &#123;
+        cin&gt;&gt;a[i];
+    &#125;
+    for(int i=1;i&lt;=n;i++)
+    &#123;
+        cin&gt;&gt;t;
+        //初始化变量和数组
+        s=0;                      //位数
+        ans=0;                    //答案
+        memset(g,false,sizeof(g));
+        for(int j=0;j&lt;t.size();j++)
+        &#123;
+            if(t[j]==&#39;(&#39;)         //遇到括号时
+            &#123;
+                while(t[++j]!=&#39;)&#39;)//重复直到遇到右括号
+                &#123;
+                    //设置为true（可用）
+                    g[s][t[j]-&#39;a&#39;]=true;
+                &#125;
+                s++;              //注意是在同一位上，需要等括号内内容统计完再让位数+1
+            &#125;
+            else
+            &#123;
+                //直接设置一个字母为true（可用）
+                g[s++][t[j]-&#39;a&#39;]=true;
+            &#125;
+        &#125;
+        for(int j=1;j&lt;=d;j++)
+        &#123;
+            q=true;               //标记
+            for(int k=0;k&lt;l;k++)
+            &#123;
+                if(!g[k][a[j][k]-&#39;a&#39;])
+                &#123;
+                    q=false;
+                    break;        //不符合直接退出
+                &#125;
+            &#125;
+            if(q)
+            &#123;
+                ans++;            //答案+1
+            &#125;
+        &#125;
+        //输出
+        cout&lt;&lt;&quot;Case #&quot;&lt;&lt;i&lt;&lt;&quot;: &quot;&lt;&lt;ans&lt;&lt;endl;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+
     </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
     
 </div>
 
@@ -297,6 +320,29 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="TT-chen-cqz/giscus"
+    data-repo-id="R_kgDOPhi_eA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOPhi_eM4CuaMi"
+    data-mapping="url"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="url"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
     
 </body>
 </html>

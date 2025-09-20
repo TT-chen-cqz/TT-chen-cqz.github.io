@@ -176,6 +176,106 @@
         
 
 <div class="post">
+    <a href="/2025/09/20/P13428-GCJ-2009-Qualification-Alien-Language-%E9%A2%98%E8%A7%A3/">
+        <h2 class="post-title">P13428 [GCJ 2009 Qualification] Alien Language 题解</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/9/20
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P13428">题目传送门</a></p>
+<hr>
+<p><strong>思路：</strong></p>
+<p>先输入三个整数和 D 个单词；</p>
+<p>重复 N 次：</p>
+<ol>
+<li>输入一个字符串 T；</li>
+<li><strong>处理字符串</strong>：用一个二维数组 G，用于记录每一位有哪些字母可以用，然后遍历字符串，如遇 <code>(</code> 则重复将后面的所有字符统计到<strong>这一位</strong>，直到遇到 <code>)</code> 为止，否则直接将该字符统计到这一位即可；</li>
+<li>遍历每一个单词，如果该单词的每一位都是可用字母，那么 ans + 1；</li>
+<li>输出；</li>
+</ol>
+<p><strong>AC code：</strong></p>
+<pre><code class="cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int l,d,n,s,ans;
+string t,a[5005];
+bool g[505][30],q;
+int main()
+&#123;
+    cin&gt;&gt;l&gt;&gt;d&gt;&gt;n;
+    for(int i=1;i&lt;=d;i++)
+    &#123;
+        cin&gt;&gt;a[i];
+    &#125;
+    for(int i=1;i&lt;=n;i++)
+    &#123;
+        cin&gt;&gt;t;
+        //初始化变量和数组
+        s=0;                      //位数
+        ans=0;                    //答案
+        memset(g,false,sizeof(g));
+        for(int j=0;j&lt;t.size();j++)
+        &#123;
+            if(t[j]==&#39;(&#39;)         //遇到括号时
+            &#123;
+                while(t[++j]!=&#39;)&#39;)//重复直到遇到右括号
+                &#123;
+                    //设置为true（可用）
+                    g[s][t[j]-&#39;a&#39;]=true;
+                &#125;
+                s++;              //注意是在同一位上，需要等括号内内容统计完再让位数+1
+            &#125;
+            else
+            &#123;
+                //直接设置一个字母为true（可用）
+                g[s++][t[j]-&#39;a&#39;]=true;
+            &#125;
+        &#125;
+        for(int j=1;j&lt;=d;j++)
+        &#123;
+            q=true;               //标记
+            for(int k=0;k&lt;l;k++)
+            &#123;
+                if(!g[k][a[j][k]-&#39;a&#39;])
+                &#123;
+                    q=false;
+                    break;        //不符合直接退出
+                &#125;
+            &#125;
+            if(q)
+            &#123;
+                ans++;            //答案+1
+            &#125;
+        &#125;
+        //输出
+        cout&lt;&lt;&quot;Case #&quot;&lt;&lt;i&lt;&lt;&quot;: &quot;&lt;&lt;ans&lt;&lt;endl;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2025/09/20/P13428-GCJ-2009-Qualification-Alien-Language-%E9%A2%98%E8%A7%A3/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2025/09/20/%E6%B4%9B%E8%B0%B7%E6%9F%A5%E7%9C%8B%E4%B8%BB%E9%A1%B5%E6%96%B9%E6%B3%95/">
         <h2 class="post-title">洛谷查看主页方法</h2>
     </a>
@@ -229,7 +329,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #03a9f4">洛谷</a>
+            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #00a596">洛谷</a>
         </span>
         
     </div>
@@ -358,12 +458,12 @@ int main()
         
         <span class="tag">
             
-            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #ffa2c4">题解</a>
+            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #00a596">题解</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #03a9f4">洛谷</a>
+            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #00bcd4">洛谷</a>
         </span>
         
     </div>
@@ -407,7 +507,7 @@ int main()
 <hr>
 <h2 id="各平台账号"><a href="#各平台账号" class="headerlink" title="各平台账号"></a>各平台账号</h2><ul>
 <li>QQ：709331890（TT）</li>
-<li>email：<a href="mailto:&#55;&#x30;&#x39;&#51;&#x33;&#x31;&#56;&#x39;&#x30;&#x40;&#113;&#113;&#46;&#x63;&#111;&#109;">&#55;&#x30;&#x39;&#51;&#x33;&#x31;&#56;&#x39;&#x30;&#x40;&#113;&#113;&#46;&#x63;&#111;&#109;</a></li>
+<li>email：<a href="mailto:&#55;&#48;&#57;&#51;&#51;&#49;&#56;&#x39;&#48;&#x40;&#x71;&#113;&#46;&#99;&#x6f;&#x6d;">&#55;&#48;&#57;&#51;&#51;&#49;&#56;&#x39;&#48;&#x40;&#x71;&#113;&#46;&#99;&#x6f;&#x6d;</a></li>
 <li>bilibili：暂不公开</li>
 <li>github：TT-chen-cqz <del>（我没记错吧）</del></li>
 <li>luogu：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/1358460"><img src="https://api.jerryz.com.cn/shield?id=1358460"></a></li>
@@ -620,12 +720,12 @@ int main()
         
         <span class="tag">
             
-            <a href="/tags/%E4%B8%AA%E4%BA%BA/" style="color: #00bcd4">个人</a>
+            <a href="/tags/%E4%B8%AA%E4%BA%BA/" style="color: #ffa2c4">个人</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%90%9E%E7%AC%91/" style="color: #ff7d73">搞笑</a>
+            <a href="/tags/%E6%90%9E%E7%AC%91/" style="color: #03a9f4">搞笑</a>
         </span>
         
     </div>
@@ -694,7 +794,7 @@ int main()
         
         <span class="tag">
             
-            <a href="/tags/%E7%AB%99%E7%82%B9%E4%BF%A1%E6%81%AF/" style="color: #ffa2c4">站点信息</a>
+            <a href="/tags/%E7%AB%99%E7%82%B9%E4%BF%A1%E6%81%AF/" style="color: #03a9f4">站点信息</a>
         </span>
         
     </div>

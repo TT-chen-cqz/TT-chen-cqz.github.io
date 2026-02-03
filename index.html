@@ -12,15 +12,6 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
     />
     <link rel="icon" href="/images/avatar.png" />
-    <canvas id="background" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
-    <script src="/js/background.js"></script>
-    <canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas>
-    <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
-    <script src="/js/fireworks.js"></script>
-    <div id="cursor"></div>
-    <link rel="stylesheet" href="/css/cursor.css">
-    <script src="/js/cursor.js"></script>
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <link rel="preconnect" href="https://s4.zstatic.net" />
 <script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
 <link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -55,7 +46,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -91,6 +82,11 @@
         <a href="/tags">
             <i class="fa-solid fa-tags fa-fw"></i>
             <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/score">
+            <i class="fa-solid fa-arrow-pointer fa-fw"></i>
+            <span>&ensp;Score</span>
         </a>
         
     </nav>
@@ -135,6 +131,15 @@
                             <i class="fa-solid fa-tags fa-fw"></i>
                         </div>
                         <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/score">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-arrow-pointer fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Score</div>
                     </div>
                 </a>
                 
@@ -206,35 +211,35 @@ using namespace std;
 int n,k;
 int a[1000005],tmp=1;
 int main()
-&#123;
+{
     cin&gt;&gt;n&gt;&gt;k;
     if(k&gt;n)					//0个，随便来 
-    &#123;
+    {
         for(;tmp&lt;=n;tmp++)
-        &#123;
+        {
             a[tmp]=tmp;
-        &#125;
-    &#125;
+        }
+    }
     else					//按余数来
-    &#123;
+    {
         for(int i=0;i&lt;k;i++)//余数的可能性
-        &#123;
+        {
             for(int j=0;j*k+i&lt;=n;j++)
-            &#123;
+            {
                 if(j*k+i&gt;0)
-                &#123;
+                {
                     a[tmp++]=j*k+i;
-                &#125;
-            &#125;
-        &#125;
-    &#125;
+                }
+            }
+        }
+    }
     for(int i=1;i&lt;n;i++)
-    &#123;
+    {
         cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;
-    &#125;
+    }
     cout&lt;&lt;a[n];				//无空格
     return 0; 
-&#125;
+}
 </code></pre>
 
             
@@ -284,57 +289,57 @@ int l,d,n,s,ans;
 string t,a[5005];
 bool g[505][30],q;
 int main()
-&#123;
+{
     cin&gt;&gt;l&gt;&gt;d&gt;&gt;n;
     for(int i=1;i&lt;=d;i++)
-    &#123;
+    {
         cin&gt;&gt;a[i];
-    &#125;
+    }
     for(int i=1;i&lt;=n;i++)
-    &#123;
+    {
         cin&gt;&gt;t;
         //初始化变量和数组
         s=0;                      //位数
         ans=0;                    //答案
         memset(g,false,sizeof(g));
         for(int j=0;j&lt;t.size();j++)
-        &#123;
+        {
             if(t[j]==&#39;(&#39;)         //遇到括号时
-            &#123;
+            {
                 while(t[++j]!=&#39;)&#39;)//重复直到遇到右括号
-                &#123;
+                {
                     //设置为true（可用）
                     g[s][t[j]-&#39;a&#39;]=true;
-                &#125;
+                }
                 s++;              //注意是在同一位上，需要等括号内内容统计完再让位数+1
-            &#125;
+            }
             else
-            &#123;
+            {
                 //直接设置一个字母为true（可用）
                 g[s++][t[j]-&#39;a&#39;]=true;
-            &#125;
-        &#125;
+            }
+        }
         for(int j=1;j&lt;=d;j++)
-        &#123;
+        {
             q=true;               //标记
             for(int k=0;k&lt;l;k++)
-            &#123;
+            {
                 if(!g[k][a[j][k]-&#39;a&#39;])
-                &#123;
+                {
                     q=false;
                     break;        //不符合直接退出
-                &#125;
-            &#125;
+                }
+            }
             if(q)
-            &#123;
+            {
                 ans++;            //答案+1
-            &#125;
-        &#125;
+            }
+        }
         //输出
         cout&lt;&lt;&quot;Case #&quot;&lt;&lt;i&lt;&lt;&quot;: &quot;&lt;&lt;ans&lt;&lt;endl;
-    &#125;
+    }
     return 0;
-&#125;
+}
 </code></pre>
 
             
@@ -389,72 +394,72 @@ int n,a[105],maxn=-1,minn=0,p;
 string s;
 char c[105][105];
 int main()
-&#123;
+{
     cin&gt;&gt;n&gt;&gt;s;
     a[0]=0;
     for(int i=0;i&lt;n;i++)
-    &#123;
+    {
         switch(s[i])
-        &#123;
+        {
             case &#39;+&#39;:
-            &#123;
+            {
                 a[i+1]=a[i]+1;
                 maxn=max(maxn,a[i]);      //记当天开始时
                 break;
-            &#125;
+            }
             case &#39;-&#39;:
-            &#123;
+            {
             	a[i+1]=a[i]-1;
                 minn=min(minn,a[i+1]);    //记当天结束时
                 break;
-            &#125;
+            }
             case &#39;=&#39;:
-            &#123;
+            {
             	a[i+1]=a[i];
                 maxn=max(maxn,a[i+1]);    //说不定比向上曲线更高
                 break;
-            &#125;
-        &#125;
-    &#125;
+            }
+        }
+    }
     p=maxn-minn+1;
     for(int i=0;i&lt;p;i++)
-    &#123;
+    {
         for(int j=0;j&lt;n;j++)
-        &#123;
+        {
             c[i][j]=&#39;.&#39;;                  //初始化 
-        &#125;
-    &#125;
+        }
+    }
     for(int i=0;i&lt;n;i++)
-    &#123;
+    {
         switch(s[i])
-        &#123;
+        {
             case &#39;+&#39;:
-            &#123;
+            {
             	c[maxn-a[i]][i]=&#39;/&#39;;
             	break;
-            &#125;
+            }
             case &#39;-&#39;:
-            &#123;
+            {
             	c[maxn-a[i+1]][i]=&#39;\\&#39;;   //注意转义符 
             	break;
-            &#125;
+            }
             case &#39;=&#39;:
-            &#123;
+            {
             	c[maxn-a[i]][i]=&#39;_&#39;;
             	break;
-            &#125;
-        &#125;
-    &#125;
+            }
+        }
+    }
     for(int i=0;i&lt;p;i++)
-    &#123;
+    {
         for(int j=0;j&lt;n;j++)
-        &#123;
+        {
             cout&lt;&lt;c[i][j]; 
-        &#125;
+        }
         cout&lt;&lt;endl;
-    &#125;
+    }
     return 0;
-&#125;
+}
 </code></pre>
 
             
@@ -470,12 +475,12 @@ int main()
         
         <span class="tag">
             
-            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #00a596">题解</a>
+            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #00bcd4">题解</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #03a9f4">洛谷</a>
+            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #ffa2c4">洛谷</a>
         </span>
         
     </div>
@@ -538,7 +543,7 @@ int main()
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2025 TT&#39;s Blog
+            2022 - 2026 TT&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
@@ -549,50 +554,6 @@ int main()
             <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
         </div>
         
-        <span id="busuanzi_container_site_pv">
-            本站总访问量：<span id="busuanzi_value_site_pv"></span>
-        </span>
-        <br>
-        <a target="_blank" rel="noopener" href="https://github.com/TT-chen-cqz/TT-chen-cqz.github.io">Github仓库</a>
-        <br>
-        <span id="sitetime"></span>
-        <script language=javascript>
-            function siteTime(){
-                window.setTimeout("siteTime()", 1000);
-                var seconds = 1000;
-                var minutes = seconds * 60;
-                var hours = minutes * 60;
-                var days = hours * 24;
-                var years = days * 365;
-                var today = new Date();
-                var todayYear = today.getFullYear();
-                var todayMonth = today.getMonth()+1;
-                var todayDate = today.getDate();
-                var todayHour = today.getHours();
-                var todayMinute = today.getMinutes();
-                var todaySecond = today.getSeconds();
-                /* 
-                Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
-                year - 作为date对象的年份，为4位年份值
-                month - 0-11之间的整数，做为date对象的月份
-                day - 1-31之间的整数，做为date对象的天数
-                hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
-                minutes - 0-59之间的整数，做为date对象的分钟数
-                seconds - 0-59之间的整数，做为date对象的秒数
-                microseconds - 0-999之间的整数，做为date对象的毫秒数
-                */
-                var t1 = Date.UTC(2025,08,31,21,00,00);
-                var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
-                var diff = t2-t1;
-                var diffYears = Math.floor(diff/years);
-                var diffDays = Math.floor((diff/days)-diffYears*365);
-                var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
-                var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
-                var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
-                document.getElementById("sitetime").innerHTML="航行了 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
-            }
-            siteTime();
-        </script>
     </div>
 </footer>
 

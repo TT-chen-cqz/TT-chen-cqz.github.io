@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>成绩查询系统 - 1.9.0 by TTchen&xxy150310</title>
+    <title>团队成绩查询系统 - 1.9.5 by TTchen&xxy150310</title>
     <!-- 引入ECharts图表库 -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <style>
@@ -36,49 +36,47 @@
         .rank-table th, .guzhi-rank-table th {background:#f8f9fa;}
         .rank-table .my-rank, .guzhi-rank-table .my-rank {background:#fff3cd;color:#856404;font-weight:bold;}
         .no-data {color:#666;text-align:center;padding:20px;}
-        .link {text-align:center;margin-top:30px;}
-        .link a {color:#007bff;text-decoration:none;}
-        .link a:hover {text-decoration:underline;}
+        .tips p {text-align:center;color:#616161;}
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>成绩查询系统 - 1.9.0 by TTchen&xxy150310</h1>
+        <h1>团队成绩查询系统 - 1.9.5 by TTchen&xxy150310</h1>
 
         <!-- 刷新数据 -->
-        <button class="refresh-btn" onclick="refreshAllData()">加载最新成绩&咕值数据</button>
+        <button class="refresh-btn" onclick="refreshAllData()">加载最新团队成绩&咕值数据</button>
 
         <!-- 查询区域 -->
         <div class="search-box">
             <input type="text" id="nameInput" placeholder="请输入姓名查询成绩&咕值">
-            <button onclick="searchScore()">查询成绩&咕值</button>
+            <button onclick="searchScore()">查询团队成绩&咕值</button>
         </div>
 
         <!-- 排名维度选择 -->
         <div class="rank-select" id="rankSelect" style="display:none;">
             <label><input type="radio" name="rankType" value="total" checked> 按总分排名</label>
             <label><input type="radio" name="rankType" value="avg"> 按平均分排名</label>
-            <button onclick="refreshRank()">刷新成绩排名</button>
-            <button onclick="refreshGuzhiRank()" style="margin-left:20px;">刷新咕值排名</button>
+            <button onclick="refreshRank()">刷新团队成绩排名</button>
+            <button onclick="refreshGuzhiRank()" style="margin-left:20px;">刷新团队咕值排名</button>
         </div>
 
         <!-- 个人成绩统计 -->
         <div class="stats-area" id="statsArea">
             <h3 id="statsTitle"></h3>
             <div class="stats-item">个人平均分：<span id="userAvg">0</span></div>
-            <div class="stats-item">成绩排名：<span id="userRank">0</span> / <span id="totalUser">0</span></div>
+            <div class="stats-item">团队成绩排名：<span id="userRank">0</span> / <span id="totalUser">0</span></div>
         </div>
 
         <!-- 个人咕值统计 -->
         <div class="guzhi-area" id="guzhiArea">
             <h3 id="guzhiTitle"></h3>
-            <div class="guzhi-item">比赛咕值（平均分取整）：<span id="userMatchGuzhi">0</span></div>
-            <div class="guzhi-item">基础信用：<span id="userBaseCredit">0</span></div>
-            <div class="guzhi-item">练习情况：<span id="userPractice">0</span></div>
-            <div class="guzhi-item">成就：<span id="userAchievement">0</span></div>
-            <div class="guzhi-item">社区贡献：<span id="userCommunity">0</span></div>
+            <div class="guzhi-item">团队比赛咕值（平均分取整）：<span id="userMatchGuzhi">0</span></div>
+            <div class="guzhi-item">团队基础信用：<span id="userBaseCredit">0</span></div>
+            <div class="guzhi-item">团队练习情况：<span id="userPractice">0</span></div>
+            <div class="guzhi-item">团队成就：<span id="userAchievement">0</span></div>
+            <div class="guzhi-item">团队贡献：<span id="userCommunity">0</span></div>
             <div class="guzhi-item" style="font-weight:bold;margin-top:15px;">咕值总分：<span id="userTotalGuzhi">0</span></div>
-            <div class="guzhi-item">咕值排名：<span id="userGuzhiRank">0</span> / <span id="totalGuzhiUser">0</span></div>
+            <div class="guzhi-item">团队咕值排名：<span id="userGuzhiRank">0</span> / <span id="totalGuzhiUser">0</span></div>
         </div>
 
         <!-- 折线图容器 -->
@@ -86,13 +84,13 @@
 
         <!-- 成绩排名列表 -->
         <div class="rank-area" id="rankArea">
-            <h3 id="rankTitle">总成绩排名</h3>
+            <h3 id="rankTitle">团队总成绩排名</h3>
             <table class="rank-table">
                 <thead>
                     <tr>
                         <th>排名</th>
                         <th>用户名</th>
-                        <th>参与比赛数</th>
+                        <th>参与团队比赛数</th>
                         <th id="rankCol4">总分</th>
                         <th id="rankCol5">平均分</th>
                     </tr>
@@ -103,27 +101,24 @@
 
         <!-- 咕值排名列表 -->
         <div class="guzhi-rank-area" id="guzhiRankArea">
-            <h3 id="guzhiRankTitle">咕值总分排名</h3>
+            <h3 id="guzhiRankTitle">团队咕值总分排名</h3>
             <table class="guzhi-rank-table">
                 <thead>
                     <tr>
                         <th>排名</th>
                         <th>用户名</th>
-                        <th>比赛咕值</th>
-                        <th>基础信用</th>
-                        <th>练习情况</th>
-                        <th>成就</th>
-                        <th>社区贡献</th>
-                        <th>咕值总分</th>
+                        <th>团队比赛咕值</th>
+                        <th>团队基础信用</th>
+                        <th>团队练习情况</th>
+                        <th>团队成就</th>
+                        <th>团队贡献</th>
+                        <th>团队咕值总分</th>
                     </tr>
                 </thead>
                 <tbody id="guzhiRankBody"></tbody>
             </table>
             
         </div>
-        <div class="link"><a href="/">博客首页</a> | <a href="https://github.com/">前往github管理</a></div>
-        <div class="tips">支持按时间查看成绩趋势，按总分/平均分/咕值查看排名</div>
-        <br>
         <script src="https://giscus.app/client.js"
                 data-repo="TT-chen-cqz/giscus"
                 data-repo-id="R_kgDOPhi_eA"
@@ -139,6 +134,7 @@
                 crossorigin="anonymous"
                 async>
         </script>
+        <div class="tips"><p>1.9.5 by TTchen&xxy150310</p></div>
     </div>
 
     <script>

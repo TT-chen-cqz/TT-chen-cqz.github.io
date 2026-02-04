@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>P14127 [SCCPC 2021] K-skip Permutation 题解 | TT&#39;s Blog</title>
+    <title>tt oi | TT&#39;s Blog</title>
     <meta name="author" content="TT" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -142,94 +142,23 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>P14127 [SCCPC 2021] K-skip Permutation 题解</h1>
+        <h1>tt oi</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2025/10/8
+            2026/2/4
         </span>
         
-        <span class="category">
-            <a href="/categories/%E9%A2%98%E8%A7%A3/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                题解
-            </a>
-        </span>
-        
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #00bcd4">
-                    题解
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #03a9f4">
-                    洛谷
-                </a>
-            </span>
-            
-        </span>
         
     </div>
     
     <div class="content" v-pre>
-        <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P14127">题目传送门</a></p>
-<hr>
-<p><strong>思路：</strong></p>
-<p>首先，不难看出，如果 k &gt; n，那么 f(P,k) 肯定为 0，所以可以随便输出（比如从小到大）。</p>
-<p>而 k ≤ n 时，我们可以通过每个数除以 k 的<strong>余数</strong>进行分类，即除以 k 余数相同的数，两两差 k，要放在一起。而且这样可以 1 到 n 的每个整数<strong>恰好出现一次</strong>。</p>
-<p>最后还得注意行末<strong>不能有空格</strong>！</p>
-<hr>
-<p><strong>AC code:</strong></p>
-<pre><code class="cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int n,k;
-int a[1000005],tmp=1;
-int main()
-{
-    cin&gt;&gt;n&gt;&gt;k;
-    if(k&gt;n)					//0个，随便来 
-    {
-        for(;tmp&lt;=n;tmp++)
-        {
-            a[tmp]=tmp;
-        }
-    }
-    else					//按余数来
-    {
-        for(int i=0;i&lt;k;i++)//余数的可能性
-        {
-            for(int j=0;j*k+i&lt;=n;j++)
-            {
-                if(j*k+i&gt;0)
-                {
-                    a[tmp++]=j*k+i;
-                }
-            }
-        }
-    }
-    for(int i=1;i&lt;n;i++)
-    {
-        cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;
-    }
-    cout&lt;&lt;a[n];				//无空格
-    return 0; 
-}
-</code></pre>
+        <h1 id="欢迎来到-TT-OI-官网！！！"><a href="#欢迎来到-TT-OI-官网！！！" class="headerlink" title="欢迎来到 TT OI 官网！！！"></a>欢迎来到 <code>TT OI</code> 官网！！！</h1><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/team/123266">洛谷TT OI团队</a></p>
+<h2 id="公告"><a href="#公告" class="headerlink" title="公告"></a>公告</h2><h3 id="Welcome-to-TT-OI"><a href="#Welcome-to-TT-OI" class="headerlink" title="Welcome to TT OI!"></a>Welcome to TT OI!</h3><h2 id="最近比赛"><a href="#最近比赛" class="headerlink" title="最近比赛"></a>最近比赛</h2><p>暂无</p>
+<h2 id="最新题单"><a href="#最新题单" class="headerlink" title="最新题单"></a>最新题单</h2><p>暂无</p>
 
     </div>
     

@@ -181,6 +181,172 @@
         
 
 <div class="post">
+    <a href="/2026/02/06/%E3%80%90TTR-201%E3%80%91%E3%80%8CTT-OI%E3%80%8D-Round-I-T2%E9%A2%98%E8%A7%A3/">
+        <h2 class="post-title">【TTR-201】「TT-OI」-Round-I-T2题解</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/TT-OI-%E9%A2%98%E8%A7%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                TT OI 题解
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/6
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="【TTR-201】「TT-OI」-Round-I"><a href="#【TTR-201】「TT-OI」-Round-I" class="headerlink" title="【TTR-201】「TT OI」 Round I"></a>【TTR-201】「TT OI」 Round I</h1><h3 id="注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路-amp-核心代码，不提供完整源代码！！！"><a href="#注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路-amp-核心代码，不提供完整源代码！！！" class="headerlink" title="注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路&amp;核心代码，不提供完整源代码！！！"></a>注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路&amp;核心代码，不提供完整源代码！！！</h3><h3 id="T2-钟冰羊的括号"><a href="#T2-钟冰羊的括号" class="headerlink" title="T2 钟冰羊的括号"></a>T2 钟冰羊的括号</h3><p>本题只需使用一个栈 <em>（可使用STL）</em>，当遇到左括号时将括号入栈，遇到右括号时，判断栈是否为空且栈顶的左括号是否匹配右括号即可。</p>
+<p>题库中有类似题目，可自行查阅，此处不过多赘述。</p>
+<p><strong>注意：输入字符串可能为空串，使用需使用 <code>getline()</code> 函数！！！</strong></p>
+<p><strong>核心代码：</strong></p>
+<pre><code class="cpp">stack &lt;int&gt; st;  //定义栈
+map &lt;char,char&gt; m;
+m[&#39;(&#39;]=&#39;)&#39;  //左括号和右括号的匹配关系
+//以此类推
+</code></pre>
+<pre><code class="cpp">if(s[i]==&#39;(&#39;||s[i]==&#39;[&#39;||s[i]==&#39;{&#39;)
+{
+    st.push(s[i]);  //入栈
+}
+else
+{
+    if(m[st.top()]!=s[i])
+    {
+        return false;
+    }
+    else
+    {
+        st.pop();   //出栈
+    }
+}
+</code></pre>
+<pre><code class="cpp">getline(cin,ss);
+t=stoi(ss);
+while(t--)
+{
+    getline(cin,s);
+    //...
+}
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #00bcd4">题解</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #00a596">洛谷</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/TT-OI/" style="color: #ffa2c4">TT OI</a>
+        </span>
+        
+    </div>
+    <a href="/2026/02/06/%E3%80%90TTR-201%E3%80%91%E3%80%8CTT-OI%E3%80%8D-Round-I-T2%E9%A2%98%E8%A7%A3/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/02/06/%E3%80%90TTR-201%E3%80%91%E3%80%8CTT-OI%E3%80%8D-Round-I-T1%E9%A2%98%E8%A7%A3/">
+        <h2 class="post-title">【TTR-201】「TT OI」 Round I T1题解</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/TT-OI-%E9%A2%98%E8%A7%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                TT OI 题解
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/6
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="【TTR-201】「TT-OI」-Round-I"><a href="#【TTR-201】「TT-OI」-Round-I" class="headerlink" title="【TTR-201】「TT OI」 Round I"></a>【TTR-201】「TT OI」 Round I</h1><h3 id="注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路-amp-核心代码，不提供完整源代码！！！"><a href="#注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路-amp-核心代码，不提供完整源代码！！！" class="headerlink" title="注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路&amp;核心代码，不提供完整源代码！！！"></a>注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路&amp;核心代码，不提供完整源代码！！！</h3><h3 id="T1-11111！！！"><a href="#T1-11111！！！" class="headerlink" title="T1 11111！！！"></a>T1 11111！！！</h3><p>首先，观察题目，不难发现钟冰洋喜欢的数字再 +1 便可得到一个首位是 1，其他数位全是 0 的数。</p>
+<p>如：</p>
+<ul>
+<li>(15)10&#x3D;(1111)2</li>
+<li>(15)10+1&#x3D;(16)10</li>
+<li>也可以是：(1111)2+1&#x3D;(10000)2</li>
+<li>(16)10&#x3D;(10000)2</li>
+</ul>
+<p>我们将 (1111)2 和 (10000)2 放在一起：</p>
+<pre><code>10000
+ 1111
+</code></pre>
+<p>便可以发现它们没有一位相同，那么事情就变得简单起来了：</p>
+<p>我们只需判断 s[i] 按位与 s[i]+1 的结果是否为 0 即可。</p>
+<p><strong>核心代码：</strong></p>
+<pre><code class="cpp">bool ans=s[i]&amp;s[i]+1;
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #00bcd4">题解</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #ffa2c4">洛谷</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/TT-OI/" style="color: #03a9f4">TT OI</a>
+        </span>
+        
+    </div>
+    <a href="/2026/02/06/%E3%80%90TTR-201%E3%80%91%E3%80%8CTT-OI%E3%80%8D-Round-I-T1%E9%A2%98%E8%A7%A3/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2025/10/08/P14127-SCCPC-2021-K-skip-Permutation-%E9%A2%98%E8%A7%A3/">
         <h2 class="post-title">P14127 [SCCPC 2021] K-skip Permutation 题解</h2>
     </a>
@@ -264,12 +430,12 @@ int main()
         
         <span class="tag">
             
-            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #ffa2c4">题解</a>
+            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #ff7d73">题解</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #03a9f4">洛谷</a>
+            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #00bcd4">洛谷</a>
         </span>
         
     </div>
@@ -387,12 +553,12 @@ int main()
         
         <span class="tag">
             
-            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #ff7d73">题解</a>
+            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #00bcd4">题解</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #00a596">洛谷</a>
+            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #ffa2c4">洛谷</a>
         </span>
         
     </div>
@@ -521,12 +687,12 @@ int main()
         
         <span class="tag">
             
-            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #00bcd4">题解</a>
+            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #03a9f4">题解</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #ff7d73">洛谷</a>
+            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #ffa2c4">洛谷</a>
         </span>
         
     </div>

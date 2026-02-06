@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>P13428 [GCJ 2009 Qualification] Alien Language 题解 | TT&#39;s Blog</title>
+    <title>【TTR-201】「TT OI」 Round I T1题解 | TT&#39;s Blog</title>
     <meta name="author" content="TT" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -156,22 +156,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>P13428 [GCJ 2009 Qualification] Alien Language 题解</h1>
+        <h1>【TTR-201】「TT OI」 Round I T1题解</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2025/9/20
+            2026/2/6
         </span>
         
         <span class="category">
-            <a href="/categories/%E9%A2%98%E8%A7%A3/">
+            <a href="/categories/TT-OI-%E9%A2%98%E8%A7%A3/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                题解
+                TT OI 题解
             </a>
         </span>
         
@@ -184,15 +184,22 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #ff7d73">
+                <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #03a9f4">
                     题解
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #03a9f4">
+                <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #00bcd4">
                     洛谷
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/TT-OI/" style="color: #ff7d73">
+                    TT OI
                 </a>
             </span>
             
@@ -201,75 +208,22 @@
     </div>
     
     <div class="content" v-pre>
-        <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P13428">题目传送门</a></p>
-<hr>
-<p><strong>思路：</strong></p>
-<p>先输入三个整数和 D 个单词；</p>
-<p>重复 N 次：</p>
-<ol>
-<li>输入一个字符串 T；</li>
-<li><strong>处理字符串</strong>：用一个二维数组 G，用于记录每一位有哪些字母可以用，然后遍历字符串，如遇 <code>(</code> 则重复将后面的所有字符统计到<strong>这一位</strong>，直到遇到 <code>)</code> 为止，否则直接将该字符统计到这一位即可；</li>
-<li>遍历每一个单词，如果该单词的每一位都是可用字母，那么 ans + 1；</li>
-<li>输出；</li>
-</ol>
-<p><strong>AC code：</strong></p>
-<pre><code class="cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int l,d,n,s,ans;
-string t,a[5005];
-bool g[505][30],q;
-int main()
-{
-    cin&gt;&gt;l&gt;&gt;d&gt;&gt;n;
-    for(int i=1;i&lt;=d;i++)
-    {
-        cin&gt;&gt;a[i];
-    }
-    for(int i=1;i&lt;=n;i++)
-    {
-        cin&gt;&gt;t;
-        //初始化变量和数组
-        s=0;                      //位数
-        ans=0;                    //答案
-        memset(g,false,sizeof(g));
-        for(int j=0;j&lt;t.size();j++)
-        {
-            if(t[j]==&#39;(&#39;)         //遇到括号时
-            {
-                while(t[++j]!=&#39;)&#39;)//重复直到遇到右括号
-                {
-                    //设置为true（可用）
-                    g[s][t[j]-&#39;a&#39;]=true;
-                }
-                s++;              //注意是在同一位上，需要等括号内内容统计完再让位数+1
-            }
-            else
-            {
-                //直接设置一个字母为true（可用）
-                g[s++][t[j]-&#39;a&#39;]=true;
-            }
-        }
-        for(int j=1;j&lt;=d;j++)
-        {
-            q=true;               //标记
-            for(int k=0;k&lt;l;k++)
-            {
-                if(!g[k][a[j][k]-&#39;a&#39;])
-                {
-                    q=false;
-                    break;        //不符合直接退出
-                }
-            }
-            if(q)
-            {
-                ans++;            //答案+1
-            }
-        }
-        //输出
-        cout&lt;&lt;&quot;Case #&quot;&lt;&lt;i&lt;&lt;&quot;: &quot;&lt;&lt;ans&lt;&lt;endl;
-    }
-    return 0;
-}
+        <h1 id="【TTR-201】「TT-OI」-Round-I"><a href="#【TTR-201】「TT-OI」-Round-I" class="headerlink" title="【TTR-201】「TT OI」 Round I"></a>【TTR-201】「TT OI」 Round I</h1><h3 id="注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路-amp-核心代码，不提供完整源代码！！！"><a href="#注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路-amp-核心代码，不提供完整源代码！！！" class="headerlink" title="注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路&amp;核心代码，不提供完整源代码！！！"></a>注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路&amp;核心代码，不提供完整源代码！！！</h3><h3 id="T1-11111！！！"><a href="#T1-11111！！！" class="headerlink" title="T1 11111！！！"></a>T1 11111！！！</h3><p>首先，观察题目，不难发现钟冰洋喜欢的数字再 +1 便可得到一个首位是 1，其他数位全是 0 的数。</p>
+<p>如：</p>
+<ul>
+<li>(15)10&#x3D;(1111)2</li>
+<li>(15)10+1&#x3D;(16)10</li>
+<li>也可以是：(1111)2+1&#x3D;(10000)2</li>
+<li>(16)10&#x3D;(10000)2</li>
+</ul>
+<p>我们将 (1111)2 和 (10000)2 放在一起：</p>
+<pre><code>10000
+ 1111
+</code></pre>
+<p>便可以发现它们没有一位相同，那么事情就变得简单起来了：</p>
+<p>我们只需判断 s[i] 按位与 s[i]+1 的结果是否为 0 即可。</p>
+<p><strong>核心代码：</strong></p>
+<pre><code class="cpp">bool ans=s[i]&amp;s[i]+1;
 </code></pre>
 
     </div>

@@ -181,6 +181,168 @@
         
 
 <div class="post">
+    <a href="/2026/02/06/%E3%80%90TTR-201%E3%80%91%E3%80%8CTT-OI%E3%80%8D-Round-I-T3%E9%A2%98%E8%A7%A3/">
+        <h2 class="post-title">【TTR-201】「TT-OI」-Round-I-T3题解</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/TT-OI-%E9%A2%98%E8%A7%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                TT OI 题解
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/6
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="【TTR-201】「TT-OI」-Round-I"><a href="#【TTR-201】「TT-OI」-Round-I" class="headerlink" title="【TTR-201】「TT OI」 Round I"></a>【TTR-201】「TT OI」 Round I</h1><h3 id="注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路-amp-核心代码，不提供完整源代码！！！"><a href="#注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路-amp-核心代码，不提供完整源代码！！！" class="headerlink" title="注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路&amp;核心代码，不提供完整源代码！！！"></a>注：为了防止抄袭题解的事件发生，本场比赛的题解仅提供思路&amp;核心代码，不提供完整源代码！！！</h3><h3 id="T3-A-x2F-B-Problem"><a href="#T3-A-x2F-B-Problem" class="headerlink" title="T3 A&#x2F;B Problem"></a>T3 A&#x2F;B Problem</h3><p>本题为高精题目。</p>
+<p>所谓高精，就是模拟人类计算过程计算一个庞大的数据。</p>
+<p>以下是高精除以低精的代码：</p>
+<pre><code class="cpp">#include&lt;bits/stdc++.h&gt;
+#define N 5010
+using namespace std;
+string sa;
+int a[N],b,c[N],la;
+void div()
+{
+    long long t=0;
+    for(int i=la;i&gt;=1;i--)
+    {
+        t=t*10+a[i];
+        c[i]=t/b;
+        t%=b;
+    }
+    while(la&gt;1&amp;&amp;c[la]==0)
+    {
+        la--;
+    }
+}
+int main()
+{
+    cin&gt;&gt;sa&gt;&gt;b;
+    la=sa.size();
+    for(int i=1;i&lt;=la;i++)
+    {
+        a[i]=sa[la-i]-&#39;0&#39;;
+    }
+    div();
+    for(int i=la;i&gt;=1;i--)
+    {
+        cout&lt;&lt;c[i];
+    }
+    return 0;
+}
+</code></pre>
+<p>可以自行理解，但是本题是高精除以高精，所以我们需要把每次除法（<code>c[i]=t/b;</code>）改成高精减，统计减的次数即可。</p>
+<p>以下是高精减的代码：</p>
+<pre><code class="cpp">#include&lt;bits/stdc++.h&gt;
+#define N 10100
+using namespace std;
+int a[N],b[N],c[N],la,lb,lc;
+string sa,sb;
+bool cmp()
+{
+    if(la!=lb)
+    {
+        return la&lt;lb;
+    }
+    for(int i=la;i&gt;=1;i--)
+    {
+        if(a[i]!=b[i])
+        {
+            return a[i]&lt;b[i];
+        }
+    }
+    return false;
+}
+void sub()
+{
+    for(int i=1;i&lt;=lc;i++)
+    {
+        c[i]+=a[i]-b[i];
+        if(c[i]&lt;0)
+        {
+            c[i+1]--;
+            c[i]+=10;
+        }
+    }
+    while(lc&gt;1&amp;&amp;c[lc]==0)
+    {
+        lc--;
+    }
+}
+int main()
+{
+    cin&gt;&gt;sa&gt;&gt;sb;
+    la=sa.size();
+    lb=sb.size();
+    lc=max(la,lb);
+    for(int i=1;i&lt;=la;i++)
+    {
+        a[i]=sa[la-i]-&#39;0&#39;;
+    }
+    for(int i=1;i&lt;=lb;i++)
+    {
+        b[i]=sb[lb-i]-&#39;0&#39;;
+    }
+    if(cmp())
+    {
+        swap(a,b);
+        cout&lt;&lt;&#39;-&#39;;
+    }
+    sub();
+    for(int i=lc;i&gt;=1;i--)
+    {
+        cout&lt;&lt;c[i];
+    }
+    return 0;
+}
+</code></pre>
+<p><strong>本题思路如上，已给出两种高精的代码，完整代码留作思考。若仍未理解，请联系 @TTchen。</strong></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #00bcd4">题解</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #00a596">洛谷</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/TT-OI/" style="color: #ffa2c4">TT OI</a>
+        </span>
+        
+    </div>
+    <a href="/2026/02/06/%E3%80%90TTR-201%E3%80%91%E3%80%8CTT-OI%E3%80%8D-Round-I-T3%E9%A2%98%E8%A7%A3/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2026/02/06/%E3%80%90TTR-201%E3%80%91%E3%80%8CTT-OI%E3%80%8D-Round-I-T2%E9%A2%98%E8%A7%A3/">
         <h2 class="post-title">【TTR-201】「TT-OI」-Round-I-T2题解</h2>
     </a>
@@ -254,7 +416,7 @@ while(t--)
         
         <span class="tag">
             
-            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #00bcd4">题解</a>
+            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #03a9f4">题解</a>
         </span>
         
         <span class="tag">
@@ -329,17 +491,17 @@ while(t--)
         
         <span class="tag">
             
-            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #00bcd4">题解</a>
+            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #ffa2c4">题解</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #ffa2c4">洛谷</a>
+            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #00bcd4">洛谷</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/TT-OI/" style="color: #00a596">TT OI</a>
+            <a href="/tags/TT-OI/" style="color: #03a9f4">TT OI</a>
         </span>
         
     </div>
@@ -430,12 +592,12 @@ int main()
         
         <span class="tag">
             
-            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #00a596">题解</a>
+            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #00bcd4">题解</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #ffa2c4">洛谷</a>
+            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #03a9f4">洛谷</a>
         </span>
         
     </div>
@@ -553,7 +715,7 @@ int main()
         
         <span class="tag">
             
-            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #ff7d73">题解</a>
+            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #03a9f4">题解</a>
         </span>
         
         <span class="tag">
@@ -687,12 +849,12 @@ int main()
         
         <span class="tag">
             
-            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #03a9f4">题解</a>
+            <a href="/tags/%E9%A2%98%E8%A7%A3/" style="color: #ffa2c4">题解</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #ffa2c4">洛谷</a>
+            <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="color: #00bcd4">洛谷</a>
         </span>
         
     </div>
